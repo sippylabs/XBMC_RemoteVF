@@ -1,0 +1,371 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_repeat"
+    tools:context=".MainActivity" >
+
+    <SlidingDrawer
+        android:id="@+id/soundDrawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:content="@+id/content"
+        android:handle="@+id/handle" >
+
+        <Button
+            android:id="@+id/handle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="Handle"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="55dp"
+            android:layout_height="431dp"
+            android:orientation="horizontal" >
+
+            <com.xbmc_remote.android.widget.VerticalSeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/sliderback" />
+        </LinearLayout>
+    </SlidingDrawer>
+
+    <SlidingDrawer
+        android:id="@+id/libraryDrawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:content="@+id/libContent"
+        android:handle="@+id/Button01"
+        android:topOffset="0dp" >
+
+        <Button
+            android:id="@+id/Button01"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/libContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/btnMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/sepLeft"
+                android:layout_alignBottom="@+id/sepLeft"
+                android:layout_toLeftOf="@+id/sepLeft"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/musiclib" />
+
+            <ImageButton
+                android:id="@+id/sepLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/btnVideo"
+                android:layout_alignBottom="@+id/btnVideo"
+                android:layout_toLeftOf="@+id/btnVideo"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:src="@drawable/seperator" />
+
+            <ImageButton
+                android:id="@+id/btnVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/centreSep"
+                android:layout_alignBottom="@+id/centreSep"
+                android:layout_toLeftOf="@+id/centreSep"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/videolib" />
+
+            <ImageButton
+                android:id="@+id/centreSep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:src="@drawable/seperator" />
+
+            <ImageButton
+                android:id="@+id/btnTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/centreSep"
+                android:layout_alignBottom="@+id/centreSep"
+                android:layout_toRightOf="@+id/centreSep"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/tvlib" />
+
+            <ImageButton
+                android:id="@+id/rightSep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/btnTv"
+                android:layout_alignBottom="@+id/btnTv"
+                android:layout_toRightOf="@+id/btnTv"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:src="@drawable/seperator" />
+
+            <ImageButton
+                android:id="@+id/btnPictures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/rightSep"
+                android:layout_alignBottom="@+id/rightSep"
+                android:layout_toRightOf="@+id/rightSep"
+                android:background="@drawable/white_repeat"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/picturelib" />
+        </RelativeLayout>
+    </SlidingDrawer>
+
+    <RelativeLayout
+        android:id="@+id/controlsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/bottomControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/white_repeat" >
+
+            <ImageButton
+                android:id="@+id/btnHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/playpause"
+                android:hapticFeedbackEnabled="true"
+                android:padding="5dip"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/cont_home" />
+
+            <ImageButton
+                android:id="@+id/btnSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/playpause"
+                android:hapticFeedbackEnabled="true"
+                android:padding="5dip"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/cont_sound" />
+
+            <ImageButton
+                android:id="@+id/btnLib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/playpause"
+                android:hapticFeedbackEnabled="true"
+                android:padding="5dip"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/cont_folder" />
+
+            <ImageButton
+                android:id="@+id/btnReturn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/playpause"
+                android:hapticFeedbackEnabled="true"
+                android:padding="5dip"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/cont_return" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relLayoutMedia"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/back_centre" >
+
+            <ImageButton
+                android:id="@+id/searchForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/playpause"
+                android:layout_alignBottom="@+id/playpause"
+                android:layout_toRightOf="@+id/playpause"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/search_forward" />
+
+            <ImageButton
+                android:id="@+id/skipForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/searchForward"
+                android:layout_alignBottom="@+id/searchForward"
+                android:layout_toRightOf="@+id/searchForward"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/skipforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/skip_forward" />
+
+            <ImageButton
+                android:id="@+id/playpause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/searchBack"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/playpause"
+                android:hapticFeedbackEnabled="true"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/playpause" />
+
+            <ImageButton
+                android:id="@+id/searchBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/skipPrevious"
+                android:layout_toLeftOf="@+id/playpause"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchback"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/search_previous" />
+
+            <ImageButton
+                android:id="@+id/skipPrevious"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchBack"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/skipback"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/skip_previous" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relLayoutCirclecontrol"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomControls"
+            android:layout_below="@+id/relLayoutMedia"
+            android:background="@drawable/whiteglowlarge" >
+
+            <ImageButton
+                android:id="@+id/select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_select" />
+
+            <ImageButton
+                android:id="@+id/btnLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/select"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_left" />
+
+            <ImageButton
+                android:id="@+id/btnUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/select"
+                android:layout_toRightOf="@+id/btnLeft"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_up" />
+
+            <ImageButton
+                android:id="@+id/btnRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/select"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_right" />
+
+            <ImageButton
+                android:id="@+id/ImageButton05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/select"
+                android:layout_toLeftOf="@+id/select"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_topleft" />
+
+            <ImageButton
+                android:id="@+id/ImageButton06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/btnRight"
+                android:layout_alignLeft="@+id/btnRight"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_topright" />
+
+            <ImageButton
+                android:id="@+id/ImageButton08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/btnRight"
+                android:layout_alignTop="@+id/btnDown"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_bottomright" />
+
+            <ImageButton
+                android:id="@+id/ImageButton07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btnDown"
+                android:layout_toLeftOf="@+id/select"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_bottomleft" />
+
+            <ImageButton
+                android:id="@+id/btnDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/select"
+                android:layout_toRightOf="@+id/btnLeft"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/searchforward"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/direc_down" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">XBMC Wifi Remote</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="wifi">Wifi</string>
+    <string name="home">Home</string>
+    <string name="sound">Sound</string>
+    <string name="folder">Folder</string>
+    <string name="returnStr">Return</string>
+    <string name="crcContHere">Circle Control Here</string>
+    <string name="medconthere">Media Controls Here</string>
+    <string name="skipback">Skip Back</string>
+    <string name="searchback">Search Back</string>
+    <string name="playpause">Play/Pause</string>
+    <string name="searchforward">Search Forward</string>
+    <string name="skipforward">Skip Forward</string>
+    <string name="dear">Dear Rich and Dan</string>
+    <string name="message">
+        Hopefully this should be good enough for you to tie in the xbmc code needed! This screen needs you to probably generate some form of \'server list\' and an \"add server area\". Let me know if you require assistance.
+        Cheers, Kev
+    </string>
+    <string name="connected">Disconnect</string>
+    <string name="disconnected">Connect</string>
+    <string name="hostAddress"/>
+    <string name="deviceName">Android Device</string>
+    <string name="hostPort">9777</string>
+    
+
+</resources>
