@@ -181,10 +181,6 @@ public class ServerListActivity extends Activity {
 		editor.putInt("xbmcHostPort", xbmcHostPort);
 		editor.putString("deviceName", deviceName);
 
-		writeConnection(clientHostEditText.getText().toString(),
-				clientPortEditText.getText().toString(), deviceNameEditText
-						.getText().toString(), tbConnectorButton.isChecked());
-
 		editor.apply();
 	}
 
@@ -198,10 +194,6 @@ public class ServerListActivity extends Activity {
 		editor.putString("xbmcHostAddress", xbmcHostAddress);
 		editor.putInt("xbmcHostPort", xbmcHostPort);
 		editor.putString("deviceName", deviceName);
-
-		writeConnection(clientHostEditText.getText().toString(),
-				clientPortEditText.getText().toString(), deviceNameEditText
-						.getText().toString(), tbConnectorButton.isChecked());
 
 		editor.apply();
 	}
@@ -217,88 +209,6 @@ public class ServerListActivity extends Activity {
 				"Android Device"));
 		tbConnectorButton.setChecked(settings.getBoolean(
 				"tbConnectorButtonIsChecked", false));
-
-		readConnection();
 	}
 
-	public void writeConnection(String host, String port, String deviceName,
-			Boolean connectorButton) {
-		FileOutputStream fileOut;
-		try {
-			fileOut = openFileOutput("connectionfile.txt", MODE_WORLD_READABLE);
-			OutputStreamWriter outsw = new OutputStreamWriter(fileOut);
-
-			try {
-				outsw.write(host + "\n");
-				outsw.write(port + "\n");
-				outsw.write(deviceName + "\n");
-				if (connectorButton) {
-					outsw.write("1");
-				} else {
-					outsw.write("0");
-				}
-
-				outsw.flush();
-				outsw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public void readConnection() {
-		FileInputStream fileIn;
-		try {
-			StringBuffer outStringBuf = new StringBuffer();
-			String inputLine = "";
-			String host = "";
-			String port = "";
-			String device = "";
-			String connector = "";
-
-			int hostLength = 1;
-			int portLength = 1;
-			int deviceLength = 1;
-
-			fileIn = openFileInput("connectionfile.txt");
-			InputStreamReader insr = new InputStreamReader(fileIn);
-			BufferedReader inBuff = new BufferedReader(insr);
-
-			try {
-				if ((inputLine = inBuff.readLine()) != null) {
-					outStringBuf.append(inputLine);
-					host = outStringBuf.toString();
-					hostLength = host.length();
-					clientHostEditText.setText(host);
-				}
-				if ((inputLine = inBuff.readLine()) != null) {
-					outStringBuf.append(inputLine);
-					port = outStringBuf.toString();
-					portLength = port.length();
-					port = port.substring(hostLength, portLength);
-					clientPortEditText.setText(port);
-				}
-				if ((inputLine = inBuff.readLine()) != null) {
-					outStringBuf.append(inputLine);
-					device = outStringBuf.toString();
-					deviceLength = device.length();
-					device = device.substring(portLength, deviceLength);
-					deviceNameEditText.setText(device);
-				}
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			clientPortEditText.setText("9777");
-		}
-
-	}
 }
