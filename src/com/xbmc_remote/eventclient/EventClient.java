@@ -1,6 +1,7 @@
 package com.xbmc_remote.eventclient;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -10,7 +11,11 @@ import org.xbmc.eventclient.XBMCClient;
 
 import android.os.AsyncTask;
 
-public class EventClient {
+public class EventClient implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6981052160086577890L;
 	// var decs
 	XBMCClient eventClient;
 	String inputAddress = "";
@@ -92,6 +97,7 @@ public class EventClient {
 			eventClient.sendNotification("Disconnected", deviceName
 					+ " has disconnected.");
 			eventClient.stopClient();
+			
 		} catch (IOException e) {
 			
 		} catch (NullPointerException ne) {

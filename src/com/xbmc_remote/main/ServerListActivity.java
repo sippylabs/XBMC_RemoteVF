@@ -56,7 +56,7 @@ public class ServerListActivity extends Activity {
 		clientHostEditText.setText(xbmcHostAddress);
 		clientPortEditText.setText(String.valueOf(xbmcHostPort));
 		deviceNameEditText.setText(deviceName);
-
+		
 		if (xbmcHostAddress != null || xbmcHostAddress != "") {
 			if (IPVal.validate(xbmcHostAddress)) {
 				eventClient = new EventClient(xbmcHostAddress);
