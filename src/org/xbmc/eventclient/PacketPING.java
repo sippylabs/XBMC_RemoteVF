@@ -17,6 +17,9 @@
  */
 
 package org.xbmc.eventclient;
+
+import java.io.Serializable;
+
 /**
  * XBMC Event Client Class
  * 
@@ -26,7 +29,7 @@ package org.xbmc.eventclient;
  * @author Stefan Agner
  *
  */
-public class PacketPING extends Packet {
+public class PacketPING extends Packet implements Serializable {
 	/**
 	 * A PING packet tells XBMC that the client is still alive.
 	 */

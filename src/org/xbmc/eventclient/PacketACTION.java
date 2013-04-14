@@ -17,6 +17,9 @@
  */
 
 package org.xbmc.eventclient;
+
+import java.io.Serializable;
+
 /**
  * XBMC Event Client Class
  * 
@@ -25,7 +28,7 @@ package org.xbmc.eventclient;
  * @author Stefan Agner
  *
  */
-public class PacketACTION extends Packet {
+public class PacketACTION extends Packet implements Serializable {
 	
 	public final static byte ACTION_EXECBUILTIN = 0x01;
 	public final static byte ACTION_BUTTON      = 0x02;

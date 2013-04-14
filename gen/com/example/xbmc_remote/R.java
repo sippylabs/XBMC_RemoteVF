@@ -137,8 +137,8 @@ public final class R {
         public static final int seekBar1=0x7f080003;
         public static final int select=0x7f08001b;
         public static final int sepLeft=0x7f080008;
+        public static final int skipBack=0x7f080019;
         public static final int skipForward=0x7f080017;
-        public static final int skipPrevious=0x7f080019;
         public static final int soundDrawer=0x7f080000;
         public static final int textView1=0x7f080024;
         public static final int textView2=0x7f080026;

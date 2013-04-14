@@ -17,6 +17,9 @@
  */
 
 package org.xbmc.eventclient;
+
+import java.io.Serializable;
+
 /**
  * XBMC Event Client Class
  * 
@@ -24,7 +27,7 @@ package org.xbmc.eventclient;
  * @author Stefan Agner
  *
  */
-public class PacketLOG extends Packet {
+public class PacketLOG extends Packet implements Serializable {
 	
 	/**
 	 * A LOG packet tells XBMC to log the message to xbmc.log with the loglevel as specified.

@@ -239,7 +239,7 @@
                 android:id="@+id/searchBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/skipPrevious"
+                android:layout_alignTop="@+id/skipBack"
                 android:layout_toLeftOf="@+id/playpause"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/searchback"
@@ -247,7 +247,7 @@
                 android:src="@drawable/search_previous" />
 
             <ImageButton
-                android:id="@+id/skipPrevious"
+                android:id="@+id/skipBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

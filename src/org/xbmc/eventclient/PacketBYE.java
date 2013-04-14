@@ -17,6 +17,9 @@
  */
 
 package org.xbmc.eventclient;
+
+import java.io.Serializable;
+
 /**
  * XBMC Event Client Class
  * 
@@ -24,7 +27,7 @@ package org.xbmc.eventclient;
  * @author Stefan Agner
  *
  */
-public class PacketBYE extends Packet 
+public class PacketBYE extends Packet implements Serializable 
 {
 
 	/**

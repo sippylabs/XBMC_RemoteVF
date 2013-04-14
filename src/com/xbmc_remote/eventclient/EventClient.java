@@ -5,17 +5,14 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import org.xbmc.eventclient.PacketBYE;
 import org.xbmc.eventclient.PacketHELO;
 import org.xbmc.eventclient.XBMCClient;
-
-import android.os.AsyncTask;
 
 public class EventClient implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6981052160086577890L;
+	private static final long serialVersionUID = 1L;
 	// var decs
 	XBMCClient eventClient;
 	String inputAddress = "";
@@ -76,13 +73,17 @@ public class EventClient implements Serializable {
 			}
 
 			if (connected) {
-				try {
-					helo.send(hostAddress, hostPort);
-					eventClient.sendNotification(deviceName, "has connected.");
-				} catch (IOException e) {
-					return "Failed to send HELO."
-							+ "\nCheck firewall and try again.";
-				}
+				new Thread(new Runnable() {
+					public void run() {
+						try {
+							helo.send(hostAddress, hostPort);
+							eventClient.sendNotification(deviceName,
+									"has connected.");
+						} catch (IOException e) {
+
+						}
+					}
+				}).start();
 			} else if (!connected) {
 				return "Failed to connect."
 						+ "\nCheck your settings and try again.";
@@ -93,15 +94,236 @@ public class EventClient implements Serializable {
 	}
 
 	public void disconnectFromXBMC() {
-		try {
-			eventClient.sendNotification("Disconnected", deviceName
-					+ " has disconnected.");
-			eventClient.stopClient();
-			
-		} catch (IOException e) {
-			
-		} catch (NullPointerException ne) {
-			
-		}
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendNotification("Disconnected", deviceName
+							+ " has disconnected.");
+					eventClient.stopClient();
+
+				} catch (IOException e) {
+
+				} catch (NullPointerException ne) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void sendSelect() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "enter", false, true, false,
+							(short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void sendReturn() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "backspace", false, true,
+							false, (short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goUp() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "up", false, true, false,
+							(short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goDown() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "down", false, true, false,
+							(short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goLeft() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "left", false, true, false,
+							(short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goRight() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "right", false, true, false,
+							(short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goToMusic() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("XBMC.ActivateWindow(MyMusic)");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goToVideo() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("XBMC.ActivateWindow(MyVideos)");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goToTv() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("Right");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goToPictures() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("XBMC.ActivateWindow(MyPictures)");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void goToHome() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("XBMC.ActivateWindow(Home)");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void playPause() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "play_pause", false, true,
+							false, (short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void searchForward() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("AnalogFastForward");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void searchBack() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendAction("AnalogRewind");
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void skipForward() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "next_track", false, true,
+							false, (short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public void skipBack() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.sendButton("KB", "prev_track", false, true,
+							false, (short) 0, (byte) 0);
+				} catch (IOException e) {
+
+				}
+			}
+		}).start();
+	}
+
+	public Boolean isConnected() throws NullPointerException {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					eventClient.ping();
+					connected = true;
+				} catch (NullPointerException e) {
+					connected = false;
+				} catch (IOException e) {
+					connected = false;
+				}
+			}
+		}).start();
+		return connected;
 	}
 }

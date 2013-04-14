@@ -18,6 +18,8 @@
 
 package org.xbmc.eventclient;
 
+import java.io.Serializable;
+
 /**
  * XBMC Event Client Class
  * 
@@ -26,7 +28,7 @@ package org.xbmc.eventclient;
  * @author Stefan Agner
  *
  */
-public class PacketHELO extends Packet {
+public class PacketHELO extends Packet implements Serializable {
 	
 	
 	/**

@@ -1,15 +1,11 @@
 package com.xbmc_remote.main;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,23 +20,27 @@ import com.xbmc_remote.eventclient.IPAddressValidator;
 
 public class ServerListActivity extends Activity {
 
-	EventClient eventClient;
+	static EventClient eventClient;
 	String xbmcHostAddress;
 	int xbmcHostPort = 9777;
 	String deviceName = "Android Device";
 	IPAddressValidator IPVal = new IPAddressValidator();
 	String connectionInfo;
 	ToggleButton tbConnectorButton;
-	final static String prefsFile = "xbmc_remotePreferences";
+	String prefsFile = "xbmc_remotePreferences";
 	EditText clientHostEditText;
 	EditText clientPortEditText;
 	EditText deviceNameEditText;
+	//Intent mainIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.server_list);
 		tbConnectorButton = (ToggleButton) findViewById(R.id.connectorButton);
+		
+		//Intent i = getIntent();
+		//mainIntent = 
 
 		clientHostEditText = (EditText) findViewById(R.id.xbmcClientAddress);
 		clientPortEditText = (EditText) findViewById(R.id.xbmcClientPort);
@@ -135,15 +135,7 @@ public class ServerListActivity extends Activity {
 							}
 						} else {
 							// The toggle is disabled
-							new Thread(new Runnable() {
-								public void run() {
-									try {
-										eventClient.disconnectFromXBMC();
-									} catch (NullPointerException e) {
-										e.printStackTrace();
-									}
-								}
-							}).start();
+							eventClient.disconnectFromXBMC();
 							Toast.makeText(ServerListActivity.this,
 									"Disconnected.", Toast.LENGTH_SHORT).show();
 						}
@@ -172,7 +164,6 @@ public class ServerListActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-
 		SharedPreferences settings = getSharedPreferences(prefsFile, 0);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean("tbConnectorButtonIsChecked",
@@ -182,6 +173,11 @@ public class ServerListActivity extends Activity {
 		editor.putString("deviceName", deviceName);
 
 		editor.apply();
+		
+		//save event client to internal mem to be called in main activity
+		Intent i = new Intent(this, MainActivity.class);
+		i.putExtra("eventClient", eventClient);
+		startActivity(i);
 	}
 
 	@Override
@@ -196,6 +192,11 @@ public class ServerListActivity extends Activity {
 		editor.putString("deviceName", deviceName);
 
 		editor.apply();
+		
+		//save event client to internal memory to be called in main activity
+		Intent i = new Intent(this, MainActivity.class);
+		i.putExtra("eventClient", eventClient);
+		startActivity(i);
 	}
 
 	@Override
@@ -210,5 +211,13 @@ public class ServerListActivity extends Activity {
 		tbConnectorButton.setChecked(settings.getBoolean(
 				"tbConnectorButtonIsChecked", false));
 	}
-
+	
+	//deals with a cursor error preventing the activity from stopping when the cursor is null
+	@Override  
+	public void startManagingCursor(Cursor c) {  
+	 if (c == null) {  
+	  throw new IllegalStateException("cannot manage cursor: cursor == null");  
+	 }  
+	 super.startManagingCursor(c);  
+	}
 }

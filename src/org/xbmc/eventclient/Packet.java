@@ -18,6 +18,7 @@
 
 package org.xbmc.eventclient;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -72,7 +73,7 @@ import java.net.InetAddress;
  * @author Stefan Agner
  *
  */
-public abstract class Packet {
+public abstract class Packet implements Serializable {
 	
 	private byte[] sig;
 	private byte[] payload = new byte[0];

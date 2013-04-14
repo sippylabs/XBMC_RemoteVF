@@ -17,6 +17,9 @@
  */
 
 package org.xbmc.eventclient;
+
+import java.io.Serializable;
+
 /**
  * XBMC Event Client Class
  * 
@@ -25,7 +28,7 @@ package org.xbmc.eventclient;
  * @author Stefan Agner
  *
  */
-public class PacketNOTIFICATION extends Packet {
+public class PacketNOTIFICATION extends Packet implements Serializable {
 
 	/**
 	 * This packet displays a notification window in XBMC.
