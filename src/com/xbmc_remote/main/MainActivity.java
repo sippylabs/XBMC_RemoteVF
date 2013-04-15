@@ -228,9 +228,9 @@ public class MainActivity extends Activity {
 		// Wifi In here!
 		case R.id.action_wifi:
 
-			mainIntent = new Intent(getApplicationContext(),
+			mainIntent = new Intent(this,
 					ServerListActivity.class);
-			// mainIntent.putExtra("mainIntent", mainIntent);
+			mainIntent.putExtra("eventClient", eventClient);
 			startActivity(mainIntent);
 			return true;
 		default:

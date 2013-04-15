@@ -31,16 +31,21 @@ public class ServerListActivity extends Activity {
 	EditText clientHostEditText;
 	EditText clientPortEditText;
 	EditText deviceNameEditText;
-	//Intent mainIntent;
+
+	// Intent mainIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.server_list);
 		tbConnectorButton = (ToggleButton) findViewById(R.id.connectorButton);
-		
-		//Intent i = getIntent();
-		//mainIntent = 
+
+		try {
+			Intent i = getIntent();
+			eventClient = (EventClient) i.getSerializableExtra("eventClient");
+		} catch (NullPointerException e) {
+
+		}
 
 		clientHostEditText = (EditText) findViewById(R.id.xbmcClientAddress);
 		clientPortEditText = (EditText) findViewById(R.id.xbmcClientPort);
@@ -56,7 +61,7 @@ public class ServerListActivity extends Activity {
 		clientHostEditText.setText(xbmcHostAddress);
 		clientPortEditText.setText(String.valueOf(xbmcHostPort));
 		deviceNameEditText.setText(deviceName);
-		
+
 		if (xbmcHostAddress != null || xbmcHostAddress != "") {
 			if (IPVal.validate(xbmcHostAddress)) {
 				eventClient = new EventClient(xbmcHostAddress);
@@ -173,8 +178,8 @@ public class ServerListActivity extends Activity {
 		editor.putString("deviceName", deviceName);
 
 		editor.apply();
-		
-		//save event client to internal mem to be called in main activity
+
+		// save event client to internal mem to be called in main activity
 		Intent i = new Intent(this, MainActivity.class);
 		i.putExtra("eventClient", eventClient);
 		startActivity(i);
@@ -192,8 +197,8 @@ public class ServerListActivity extends Activity {
 		editor.putString("deviceName", deviceName);
 
 		editor.apply();
-		
-		//save event client to internal memory to be called in main activity
+
+		// save event client to internal memory to be called in main activity
 		Intent i = new Intent(this, MainActivity.class);
 		i.putExtra("eventClient", eventClient);
 		startActivity(i);
@@ -211,13 +216,15 @@ public class ServerListActivity extends Activity {
 		tbConnectorButton.setChecked(settings.getBoolean(
 				"tbConnectorButtonIsChecked", false));
 	}
-	
-	//deals with a cursor error preventing the activity from stopping when the cursor is null
-	@Override  
-	public void startManagingCursor(Cursor c) {  
-	 if (c == null) {  
-	  throw new IllegalStateException("cannot manage cursor: cursor == null");  
-	 }  
-	 super.startManagingCursor(c);  
+
+	// deals with a cursor error preventing the activity from stopping when the
+	// cursor is null
+	@Override
+	public void startManagingCursor(Cursor c) {
+		if (c == null) {
+			throw new IllegalStateException(
+					"cannot manage cursor: cursor == null");
+		}
+		super.startManagingCursor(c);
 	}
 }

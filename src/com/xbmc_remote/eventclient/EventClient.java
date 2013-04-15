@@ -45,21 +45,14 @@ public class EventClient implements Serializable {
 		this.deviceName = deviceName;
 		this.helo = new PacketHELO(deviceName);
 	}
-
-	/*
-	 * Dan and Kev:
-	 * 
-	 * Firstly will try to evaluate the host address input. Success leads to
-	 * subsequent connection attempt. A successful connection will send a HELO
-	 * packet to the XBMC client, letting it know which device has connected.
-	 */
+	
 	public String connectToXBMC() throws IOException {
 		boolean hostnameCorrect = true;
 
 		try {
 			hostAddress = InetAddress.getByName(this.inputAddress);
 		} catch (UnknownHostException e) {
-			// should never be reached due to regex but you never know
+			// should never be reached due to regex validation but you never know
 			hostnameCorrect = false;
 			return "Invalid IP address entered.";
 		}
@@ -77,8 +70,6 @@ public class EventClient implements Serializable {
 					public void run() {
 						try {
 							helo.send(hostAddress, hostPort);
-							eventClient.sendNotification(deviceName,
-									"has connected.");
 						} catch (IOException e) {
 
 						}
@@ -97,9 +88,8 @@ public class EventClient implements Serializable {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					eventClient.sendNotification("Disconnected", deviceName
-							+ " has disconnected.");
 					eventClient.stopClient();
+					eventClient = null;
 
 				} catch (IOException e) {
 
@@ -118,6 +108,8 @@ public class EventClient implements Serializable {
 							(short) 0, (byte) 0);
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -130,6 +122,8 @@ public class EventClient implements Serializable {
 					eventClient.sendButton("KB", "backspace", false, true,
 							false, (short) 0, (byte) 0);
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -144,6 +138,8 @@ public class EventClient implements Serializable {
 							(short) 0, (byte) 0);
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -156,6 +152,8 @@ public class EventClient implements Serializable {
 					eventClient.sendButton("KB", "down", false, true, false,
 							(short) 0, (byte) 0);
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -170,6 +168,8 @@ public class EventClient implements Serializable {
 							(short) 0, (byte) 0);
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -183,6 +183,8 @@ public class EventClient implements Serializable {
 							(short) 0, (byte) 0);
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -194,6 +196,8 @@ public class EventClient implements Serializable {
 				try {
 					eventClient.sendAction("XBMC.ActivateWindow(MyMusic)");
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -207,6 +211,8 @@ public class EventClient implements Serializable {
 					eventClient.sendAction("XBMC.ActivateWindow(MyVideos)");
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -218,6 +224,8 @@ public class EventClient implements Serializable {
 				try {
 					eventClient.sendAction("Right");
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -231,6 +239,8 @@ public class EventClient implements Serializable {
 					eventClient.sendAction("XBMC.ActivateWindow(MyPictures)");
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -242,6 +252,8 @@ public class EventClient implements Serializable {
 				try {
 					eventClient.sendAction("XBMC.ActivateWindow(Home)");
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -256,6 +268,8 @@ public class EventClient implements Serializable {
 							false, (short) 0, (byte) 0);
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -265,8 +279,11 @@ public class EventClient implements Serializable {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					eventClient.sendAction("AnalogFastForward");
+					eventClient.sendButton("KB", "f", false, true,
+							false, (short) 0, (byte) 0);
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -277,8 +294,11 @@ public class EventClient implements Serializable {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					eventClient.sendAction("AnalogRewind");
+					eventClient.sendButton("KB", "r", false, true,
+							false, (short) 0, (byte) 0);
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -293,6 +313,8 @@ public class EventClient implements Serializable {
 							false, (short) 0, (byte) 0);
 				} catch (IOException e) {
 
+				} catch (NullPointerException e) {
+
 				}
 			}
 		}).start();
@@ -305,6 +327,8 @@ public class EventClient implements Serializable {
 					eventClient.sendButton("KB", "prev_track", false, true,
 							false, (short) 0, (byte) 0);
 				} catch (IOException e) {
+
+				} catch (NullPointerException e) {
 
 				}
 			}
